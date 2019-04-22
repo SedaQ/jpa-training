@@ -25,7 +25,7 @@ public class Person implements Serializable {
     private char[] pwd;
     @Column(nullable = false, length = 45)
     private String nickname;
-    @Column(nullable = false, length = 45)
+    @Column(name="first_name", nullable = false, length = 45)
     private String firstName;
     @Column(nullable = false, length = 45)
     private String surname;
@@ -179,17 +179,11 @@ public class Person implements Serializable {
         return "Person{" +
                 "idPerson=" + idPerson +
                 ", email='" + email + '\'' +
-                ", pwd=" + Arrays.toString(pwd) +
                 ", nickname='" + nickname + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", surname='" + surname + '\'' +
                 ", birthday=" + birthday +
                 ", age=" + age +
-                ", meetings=" + meetings +
-                ", address=" + address +
-                ", contacts=" + contacts +
-                ", persons1=" + persons1 +
-                ", persons2=" + persons2 +
                 '}';
     }
 }

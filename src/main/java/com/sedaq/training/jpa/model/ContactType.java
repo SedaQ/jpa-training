@@ -73,7 +73,6 @@ public class ContactType implements Serializable {
         return "ContactType{" +
                 "idContactType=" + idContactType +
                 ", title='" + title + '\'' +
-                ", contacts=" + contacts +
                 '}';
     }
 }

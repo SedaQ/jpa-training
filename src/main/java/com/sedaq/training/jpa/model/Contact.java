@@ -80,7 +80,6 @@ public class Contact implements Serializable {
                 "idContact=" + idContact +
                 ", contact='" + contact + '\'' +
                 ", person=" + person +
-                ", contactType=" + contactType +
                 '}';
     }
 }

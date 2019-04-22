@@ -105,7 +105,6 @@ public class Address implements Serializable {
                 ", street='" + street + '\'' +
                 ", houseNumber=" + houseNumber +
                 ", zipCode='" + zipCode + '\'' +
-                ", persons=" + persons +
                 '}';
     }
 }

@@ -97,7 +97,6 @@ public class Meeting implements Serializable {
                 ", duration=" + duration +
                 ", place='" + place + '\'' +
                 ", note='" + note + '\'' +
-                ", persons=" + persons +
                 '}';
     }
 }
