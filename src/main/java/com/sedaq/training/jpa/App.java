@@ -4,16 +4,27 @@ import com.sedaq.training.jpa.dao.PersonDao;
 import com.sedaq.training.jpa.dao.impl.PersonDaoImpl;
 import com.sedaq.training.jpa.model.Person;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class App {
 
     public static void main(String[] args) {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("jpa-training");
+        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        PersonDao personDao = new PersonDaoImpl(entityManagerFactory);
+        PersonDao personDao = new PersonDaoImpl(entityManager);
+
+        // find person by id
         Person person = personDao.getPersonById(5L);
         System.out.println(person);
+
+        // find all persons
+        List<Person> persons = personDao.findAllPersons();
+        persons.forEach(p -> {
+            System.out.println(p);
+        });
     }
 }
