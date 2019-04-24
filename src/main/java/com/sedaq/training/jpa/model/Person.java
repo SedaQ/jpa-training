@@ -10,6 +10,19 @@ import java.util.*;
 /**
  * @author Pavel Šeda
  */
+@NamedEntityGraph(
+        name = "person-with-address",
+        attributeNodes = {
+                @NamedAttributeNode("address"),
+        }
+)
+@NamedEntityGraph(
+        name = "person-with-address-and-contacts",
+        attributeNodes = {
+                @NamedAttributeNode("address"),
+                @NamedAttributeNode("contacts"),
+        }
+)
 @Entity
 @Table(name = "\"person\"")
 public class Person implements Serializable {
@@ -25,7 +38,7 @@ public class Person implements Serializable {
     private char[] pwd;
     @Column(nullable = false, length = 45)
     private String nickname;
-    @Column(name="first_name", nullable = false, length = 45)
+    @Column(name = "first_name", nullable = false, length = 45)
     private String firstName;
     @Column(nullable = false, length = 45)
     private String surname;

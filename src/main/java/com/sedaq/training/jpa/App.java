@@ -3,6 +3,7 @@ package com.sedaq.training.jpa;
 import com.sedaq.training.jpa.dao.PersonDao;
 import com.sedaq.training.jpa.dao.impl.PersonDaoImpl;
 import com.sedaq.training.jpa.model.Person;
+import com.sedaq.training.jpa.pojos.PersonIdEmailSurnameCityProjection;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -22,9 +23,15 @@ public class App {
         System.out.println(person);
 
         // find all persons
-        List<Person> persons = personDao.findAllPersons();
-        persons.forEach(p -> {
-            System.out.println(p);
+//        List<Person> persons = personDao.findAllPersonsInfoWithEntityGraph();
+//        persons.forEach(p -> {
+//            System.out.println(p.getEmail() + ":  has an  " +  p.getAddress());
+//        });
+
+        List<PersonIdEmailSurnameCityProjection> personsProjection = personDao.findAllPersonsEmailSurnameCityProjection();
+        personsProjection.forEach(p -> {
+            System.out.println(p.getEmail() + " lives in  " + p.getCity());
         });
+
     }
 }
