@@ -3,7 +3,6 @@ package com.sedaq.training.jpa;
 import com.sedaq.training.jpa.dao.PersonDao;
 import com.sedaq.training.jpa.dao.impl.PersonDaoImpl;
 import com.sedaq.training.jpa.model.Person;
-import com.sedaq.training.jpa.pojos.PersonIdEmailSurnameCityProjection;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -25,12 +24,22 @@ public class App {
         // find all persons
 //        List<Person> persons = personDao.findAllPersonsInfoWithEntityGraph();
 //        persons.forEach(p -> {
-//            System.out.println(p.getEmail() + ":  has an  " +  p.getAddress());
+//            System.out.println(p.getEmail() + ":  has an  " + p.getAddress());
 //        });
 
-        List<PersonIdEmailSurnameCityProjection> personsProjection = personDao.findAllPersonsEmailSurnameCityProjection();
-        personsProjection.forEach(p -> {
-            System.out.println(p.getEmail() + " lives in  " + p.getCity());
+//        List<PersonIdEmailSurnameCityProjection> personsProjection = personDao.findAllPersonsEmailSurnameCityProjection();
+//        personsProjection.forEach(p -> {
+//            System.out.println(p.getEmail() + " lives in  " + p.getCity());
+//        });
+
+//        List<PersonWithContactsProjection> personsProjection = personDao.findAllPersonsWithContacts();
+//        personsProjection.forEach(p -> {
+//            System.out.println(p.getEmail() + " lives in  " + " and has contacts: " + p.getContacts());
+//        });
+
+        List<Person> personsSelectResponse = personDao.findAllPersonsWithAddressSelectively();
+        personsSelectResponse.forEach(p -> {
+            System.out.println(p);
         });
 
     }

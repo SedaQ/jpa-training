@@ -3,6 +3,7 @@ package com.sedaq.training.jpa.dao.impl;
 import com.sedaq.training.jpa.dao.PersonDao;
 import com.sedaq.training.jpa.model.Person;
 import com.sedaq.training.jpa.pojos.PersonIdEmailSurnameCityProjection;
+import com.sedaq.training.jpa.pojos.PersonWithContactsProjection;
 
 import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
@@ -51,6 +52,27 @@ public class PersonDaoImpl implements PersonDao {
         List<PersonIdEmailSurnameCityProjection> persons =
                 em.createQuery("SELECT new com.sedaq.training.jpa.pojos.PersonIdEmailSurnameCityProjection(p.id, p.email, p.surname, p.address.city) FROM Person p " +
                         "JOIN p.address")
+                        .getResultList();
+        return persons;
+    }
+
+    @Override
+    public List<Person> findAllPersonsWithAddressSelectively() {
+        TypedQuery<Person> persons = em.createQuery("SELECT new com.sedaq.training.jpa.model.Person(p.id, p.email, p.nickname) FROM Person p", Person.class);
+        return persons.getResultList();
+    }
+
+    /**
+     * This project does not work.. the Set is not passed to the given constructor
+     *
+     * @return
+     */
+    @Override
+    public List<PersonWithContactsProjection> findAllPersonsWithContacts() {
+        List<PersonWithContactsProjection> persons =
+                em.createQuery("SELECT new com.sedaq.training.jpa.pojos.PersonWithContactsProjection(p.id, p.email, p.surname, p.address.city, p.contacts) " +
+                        "FROM Person p " +
+                        "JOIN p.contacts")
                         .getResultList();
         return persons;
     }

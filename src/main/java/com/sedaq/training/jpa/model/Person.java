@@ -62,6 +62,12 @@ public class Person implements Serializable {
         // hibernate requires non-args constructor
     }
 
+    public Person(Long idPerson, String email, String nickname) {
+        this.idPerson = idPerson;
+        this.email = email;
+        this.nickname = nickname;
+    }
+
     public Long getIdPerson() {
         return idPerson;
     }
