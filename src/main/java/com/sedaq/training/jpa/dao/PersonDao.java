@@ -13,7 +13,13 @@ public interface PersonDao {
 
     Person getPersonById(Long id);
 
+    Person getPersonByIdNamedQuery(Long id);
+
     List<Person> findAllPersons();
+
+    List<Person> findAllPersonsNamedQuery();
+
+    List<Person> findAllNativeQuery();
 
     List<Person> findAllPersonsWithAddresses();
 

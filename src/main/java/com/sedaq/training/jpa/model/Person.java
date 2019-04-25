@@ -23,6 +23,13 @@ import java.util.*;
                 @NamedAttributeNode("contacts"),
         }
 )
+@NamedQueries({
+        @NamedQuery(name = "Person.findAll", query = "SELECT p FROM Person p"),
+        @NamedQuery(name = "Person.findById", query = "SELECT p FROM Person p WHERE p.idPerson = :id"),
+})
+@NamedNativeQueries({
+        @NamedNativeQuery(name = "Person.findAllNativeQuery", query = "SELECT email FROM person", resultClass = Person.class)
+})
 @Entity
 @Table(name = "\"person\"")
 public class Person implements Serializable {

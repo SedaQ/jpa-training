@@ -8,6 +8,7 @@ import com.sedaq.training.jpa.pojos.PersonWithContactsProjection;
 import javax.persistence.EntityGraph;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -21,15 +22,32 @@ public class PersonDaoImpl implements PersonDao {
         this.em = em;
     }
 
+    @Transactional(Transactional.TxType.REQUIRED)
     @Override
     public Person getPersonById(Long id) {
         return em.find(Person.class, id);
     }
 
     @Override
+    public Person getPersonByIdNamedQuery(Long id) {
+        TypedQuery<Person> persons = em.createNamedQuery("Person.findById", Person.class).setParameter("id", id);
+        return persons.getSingleResult();
+    }
+
+    @Override
     public List<Person> findAllPersons() {
         TypedQuery<Person> persons = em.createQuery("SELECT p FROM Person p", Person.class);
         return persons.getResultList();
+    }
+
+    @Override
+    public List<Person> findAllPersonsNamedQuery() {
+        return em.createNamedQuery("Person.findAll", Person.class).getResultList();
+    }
+
+    @Override
+    public List<Person> findAllNativeQuery() {
+        return em.createNamedQuery("Person.findAllNativeQuery", Person.class).getResultList();
     }
 
     @Override

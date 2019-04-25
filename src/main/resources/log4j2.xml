@@ -3,20 +3,24 @@
     <Appenders>
         <!-- Console Appender -->
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n" />
+            <PatternLayout pattern="%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
     </Appenders>
     <Loggers>
         <!-- Log everything in hibernate -->
         <Logger name="org.hibernate" level="info" additivity="false">
-            <AppenderRef ref="Console" />
+            <AppenderRef ref="Console"/>
         </Logger>
 
         <!-- Log SQL statements -->
         <Logger name="org.hibernate.SQL" level="debug" additivity="false">
-            <AppenderRef ref="Console" />
+            <AppenderRef ref="Console"/>
         </Logger>
 
+        <Logger name="org.hibernate.engine.internal.StatisticalLoggingSessionEventListener" level="info">
+            <AppenderRef ref="Console"></AppenderRef>
+        </Logger>
+        
         <!-- Log JDBC bind parameters -->
         <!--
         <Logger name="org.hibernate.type.descriptor.sql" level="trace" additivity="false">
@@ -26,11 +30,11 @@
 
         <!-- Log custom packages -->
         <Logger name="com.boraji.tutorial.hibernate" level="debug" additivity="false">
-            <AppenderRef ref="Console" />
+            <AppenderRef ref="Console"/>
         </Logger>
 
         <Root level="error">
-            <AppenderRef ref="Console" />
+            <AppenderRef ref="Console"/>
         </Root>
     </Loggers>
 </Configuration>

@@ -15,22 +15,23 @@
         <class>com.sedaq.training.jpa.model.Relationship</class>
         <class>com.sedaq.training.jpa.model.RelationshipType</class>
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" /> <!-- DB Driver -->
-            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/jpa-training" /> <!-- BD Mane -->
-            <property name="javax.persistence.jdbc.user" value="postgres" /> <!-- DB User -->
-            <property name="javax.persistence.jdbc.password" value="postgres" /> <!-- DB Password -->
+            <!-- Hikari is the fastest connection pooling mechanism -->
+            <property name="hibernate.connection.provider_class" value="com.zaxxer.hikari.hibernate.HikariConnectionProvider"/>
+            <property name="hibernate.hikari.dataSourceClassName" value="org.postgresql.ds.PGSimpleDataSource" /> <!-- DB Driver -->
+            <property name="hibernate.hikari.dataSource.url" value="jdbc:postgresql://localhost/jpa-training" /> <!-- BD Mane -->
+            <property name="hibernate.hikari.dataSource.user" value="postgres" /> <!-- DB User -->
+            <property name="hibernate.hikari.dataSource.password" value="postgres" /> <!-- DB Password -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL95Dialect"/> <!-- DB Dialect -->
             <!-- In PROD it value should be NONE or VALIDATE -->
             <property name="hibernate.hbm2ddl.auto" value="validate" />
             <property name="show_sql" value="true" />
             <!--<property name="hibernate.format_sql" value="true" />-->
+            <property name="hibernate.generate_statistics" value="true"/>
+            <!-- Disable the second-level cache  -->
+            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
 
-            <!-- Configuring Connection Pool -->
-            <property name="hibernate.c3p0.min_size" value="5" />
-            <property name="hibernate.c3p0.max_size" value="20" />
-            <property name="hibernate.c3p0.timeout" value="500" />
-            <property name="hibernate.c3p0.max_statements" value="50" />
-            <property name="hibernate.c3p0.idle_test_period" value="2000" />
+            <!-- Default is false for backwards compatibility.  Should be used on all new projects -->
+            <property name="hibernate.id.new_generator_mappings" value="true"/>
         </properties>
     </persistence-unit>
 </persistence>

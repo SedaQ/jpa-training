@@ -42,6 +42,14 @@
             <version>${hibernate.version}</version>
         </dependency>
         <!-- For connection pooling -->
+        <!-- Hikari is the fastest -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+            <version>3.3.1</version>
+        </dependency>
+
+        <!-- c3p0 is slow compared to hikari-->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-c3p0</artifactId>
